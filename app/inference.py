@@ -3,7 +3,7 @@ import numpy as np
 from ultralytics import YOLO
 from typing import List
 
-model = YOLO('weights/best.pt')
+model = YOLO('weights/best_1.pt')
 
 def run_inference(image_bytes: bytes) -> List[dict]:
     nparr = np.frombuffer(image_bytes, np.uint8)
@@ -11,7 +11,7 @@ def run_inference(image_bytes: bytes) -> List[dict]:
     original_height, original_width = img.shape[:2]
     img_resized = cv2.resize(img, (640, 640))
 
-    results = model.predict(source=img_resized, conf=0.7, verbose=False)
+    results = model.predict(source=img_resized, conf=0.5, verbose=False)
 
     detections = []
     for r in results:
@@ -34,14 +34,3 @@ def run_inference(image_bytes: bytes) -> List[dict]:
             })
 
     return detections
-
-
-
-
-
-
-
-
-
-
-
