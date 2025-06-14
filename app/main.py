@@ -5,6 +5,9 @@ from app.inference import run_inference
 
 app = FastAPI()
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
 
 @app.websocket("/predict")
 async def predict(websocket: WebSocket):
