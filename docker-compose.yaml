@@ -6,6 +6,4 @@ services:
       dockerfile: prod.dockerfile
     ports:
       - "8003:8003"
-    env_file:
-      - .env
     restart: always
